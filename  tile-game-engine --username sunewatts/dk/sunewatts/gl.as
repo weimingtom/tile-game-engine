@@ -121,14 +121,14 @@ package dk.sunewatts {
 myRoom[0] = [
 [17, 12, 12, 12, 12, 12, 12, 12, 12, 17, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 17],
 [14, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 2, 1, 1, 1, 97, 1, 1, 1, 1, 1, 13],
-[14, 1, 1, 1, 95, 1, 1, 1, 96, 96, 96, 1, 1, 1, 1, 1, 1, 1, 1, 15, 1, 1, 1, 1, 1, 1, 1, 97, 1, 13],
-[14, 1, 1, 5, 4, 10, 48, 51, 51, 51, 51, 10, 6, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 8],
+[14, 1, 1, 1, 95, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 15, 1, 1, 1, 1, 1, 1, 1, 97, 1, 13],
+[14, 1, 1, 5, 4, 10, 4, 4, 4, 4, 4, 10, 6, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 8],
 [14, 1, 1, 1, 1, 9, 1, 1, 1, 13, 1, 9, 1, 1, 1, 1, 1, 1, 1, 96, 1, 1, 1, 1, 1, 1, 1, 1, 1, 7],
 [14, 1, 1, 1, 1, 9, 1, 1, 1, 13, 1, 9, 1, 1, 1, 1, 1, 1, 46, 35, 47, 1, 1, 1, 1, 1, 1, 1, 2, 13],
 [14, 1, 1, 1, 1, 1, 1, 1, 1, 13, 1, 1, 1, 1, 1, 1, 1, 46, 42, 34, 43, 47, 1, 1, 1, 1, 1, 1, 1, 13],
 [14, 1, 1, 1, 1, 1, 25, 30, 1, 13, 1, 1, 40, 41, 1, 1, 46, 42, 34, 34, 34, 43, 47, 1, 1, 1, 1, 1, 1, 13],
 [14, 1, 97, 22, 2, 33, 2, 28, 30, 13, 1, 1, 44, 45, 97, 46, 42, 34, 34, 34, 34, 34, 43, 47, 1, 1, 1, 1, 1, 13],
-[17, 1, 15, 15, 15, 15, 15, 15, 15, 17, 35, 35, 42, 43, 35, 42, 34, 34, 34, 34, 34, 34, 34, 43, 35, 35, 35, 3, 2, 13]
+[17, 15, 15, 15, 15, 15, 15, 15, 15, 17, 35, 35, 42, 43, 35, 42, 34, 34, 34, 34, 34, 34, 34, 43, 35, 35, 35, 3, 2, 13]
 ]
 
 myRoom[1] = [
@@ -184,14 +184,14 @@ myRoom[3] = [
         // room names
         public static var mapName:Array = new Array();
         mapName[0] = "Start";
-        mapName[1] = "Det låste dæksel";
-        mapName[2] = "Faderhuset";
-        mapName[3] = "Det store rum";
+        mapName[1] = "A locked grate";
+        mapName[2] = "Boss Battle";
+        mapName[3] = "Corridor down";
      
         
         // doors
-        // doors are counted from top left to bottom right
-        // [ to room number, new x, new y ]
+        // doors are counted from the room's top left to bottom right
+        // myDoor[#] = [ to room number _ startX _ startY ]
         public static var myDoors:Array = new Array();
         myDoors[0] = ["1_2_2"];
     	myDoors[1] = ["0_28_4", "2_1_9", "3_8_0"];
@@ -210,18 +210,18 @@ myRoom[3] = [
         // enemies
         // myEnemies[ room number ] = "Dead?, Name, walker/flyer, X, Y, xMove, yMove, Speed, Life, JumpPct"
         public static var myEnemies:Array = new Array();
-        myEnemies[0] = [  [ false,"bird","flyer",23,1,1,0,4,1 ], [ false,"bird","flyer",27,2,-1,0,2,1 ], [ false,"fat_blue","walker",2,8,1,0,3,2,3], [ false,"sjuft","walker",14,8,1,0,3,1,6 ] ];
-		myEnemies[1] = [  [ false,"fat_blue","walker",14,1,1,0,4,1,3 ], [ false,"fat_red","walker",14,1,1,0,4,1,3 ]] //, [ false,"fat_red","walker",18,2 ], [ false,"skully_green","walker",18,2 ] ];
-		myEnemies[2] = [  [ false,"ruth","walker",8,2 ]] //, [ "blue","walker",14,9,false ], [ "sjuft","walker",15,6,false ], [ "sjuft","walker",15,6,false ], [ "sjuft","walker",15,6,false ] ] ;
-		myEnemies[3] = [  [ false,"sjuft","walker",4,9 ], [ "false,sjuft","walker",4,12 ], [ false,"sjuft","walker",4,15 ], [ false,"sjuft","walker",5,15 ], [ false,"sjuft","walker",2,18 ], [ false,"sjuft","walker",3,18 ], [ false,"sjuft","walker",4,18 ] ];
+        myEnemies[0] = [  [ false,"bird","flyer",23,1,1,0,4,1 ], [ false,"bird","flyer",27,2,-1,0,2,1 ], [ false,"fat_blue","walker",2,8,1,0,3,2,3], [ false,"green_jumper","walker",14,8,1,0,3,1,6 ] ];
+		myEnemies[1] = [  [ false,"fat_blue","walker",14,1,1,0,4,1,3 ], [ false,"fat_red","walker",14,1,1,0,4,1,3 ]];
+		myEnemies[2] = [  [ false,"blue_boss","walker",8,2,1,0,4,5,2 ]];
+		myEnemies[3] = [  [ false,"skully_green","walker",4,9,1,0,4,1,3 ], [ "false,green_jumper","walker",4,12,1,0,4,1,3 ], [ false,"green_jumper","walker",4,15,1,0,4,1,3 ], [ false,"green_jumper","walker",5,15,1,0,4,1,3 ], [ false,"green_jumper","walker",2,18,1,0,4,1,3 ], [ false,"green_jumper","walker",3,18,1,0,4,1,3 ], [ false,"green_jumper","walker",4,18,1,0,4,1,3 ] ];
 		
 		// moving tiles / platforms
 		// (Number, xTile, yTile, speed, dirX, dirY, Width, Height)
 		public static var myMovingTiles:Array = new Array();
-		myMovingTiles[0] = [[]]; // [[0, 4, 4, 2, 1, 0, 2, 5, 0, 0], [1, 5, 5, 2, 0, 1, 1, 4, 2, 5]];
-		myMovingTiles[1] = [[ 4,3,8,4,0,-1,32,8 ] ];
+		myMovingTiles[0] = [[]];
+		myMovingTiles[1] = [[ 4,3,8,4,0,-1,32,8 ]];
 		myMovingTiles[2] = [[]];
-		myMovingTiles[3] = [[0,1,4,2,0,1,16,16 ]];
+		myMovingTiles[3] = [[2,1,4,2,0,1,16,8 ]];
 
 		// **************************************************
 		// ** globals that can be modified in-game         **

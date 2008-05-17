@@ -65,14 +65,14 @@ package dk.sunewatts {
 		
 		this.name = myName;
 		
-		// add graphics from .fla library
+		// add graphics from .fla library: new zak(), new blue() ...
 		switch (myName) {
 
 			case "hero" :
 			thisChar = new zak();
 			break;	
 
-			case "sjuft" :
+			case "green_jumper" :
 			thisChar = new gnuf();
 			break;	
 
@@ -88,6 +88,10 @@ package dk.sunewatts {
 			thisChar = new blue();
 			break;	
 
+			case "blue_boss" :
+			thisChar = new blue();
+			break;	
+			
 			case "pope" :
 			thisChar = new pope();
 			break;	
@@ -111,13 +115,14 @@ package dk.sunewatts {
 		}
 
         addChild(thisChar);
-
-			var square:Sprite = new Sprite();
-			square.graphics.beginFill(0x00);
-			square.graphics.drawRect(-charWidth, -charHeight, charWidth * 2, charHeight * 2);
-			square.graphics.endFill();
-			square.alpha = .5;
-			// addChild(square);
+		
+		// debug: show character bounding box
+		var square:Sprite = new Sprite();
+		square.graphics.beginFill(0x00);
+		square.graphics.drawRect(-charWidth, -charHeight, charWidth * 2, charHeight * 2);
+		square.graphics.endFill();
+		square.alpha = .5;
+		addChild(square);
 
 
       }
@@ -380,6 +385,7 @@ package dk.sunewatts {
 			//check if we have walked off the tile and should fall down
 			//not while jumping
 			if (!ob.jump) {
+				// TODO fix for characters taller than 2 tile heights
 				helperClass.getMyCorners(ob.x, ob.y+1, ob);
 				//both tile below are empty
 				if (ob.downleft && ob.downright && !checkIfOnCloud (ob)) {

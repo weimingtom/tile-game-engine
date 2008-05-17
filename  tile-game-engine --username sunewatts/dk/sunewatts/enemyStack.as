@@ -25,13 +25,14 @@ package dk.sunewatts {
 					var myCharWidth:int = 10;
 					var myCharHeight:int = 16;
 					
-					if (mapEnemies[i][1] == "blue") { myCharWidth = 22; myCharHeight = 31; }
+					if (mapEnemies[i][1] == "blue") { myCharWidth = 25; myCharHeight = 31; }
+					if (mapEnemies[i][1] == "blue_boss") { myCharWidth = 22; myCharHeight = 28; }
 					if (mapEnemies[i][1] == "ruth") { myCharWidth = 31; myCharHeight = 31; }
 					if (mapEnemies[i][1] == "pope") { myCharWidth = 11; myCharHeight = 16; }
 					if (mapEnemies[i][1] == "fat_blue") { myCharWidth = 11; myCharHeight = 19; }
 					if (mapEnemies[i][1] == "fat_red") { myCharWidth = 11; myCharHeight = 19; }
 					
-					if ( mapEnemies[i][1] != "ruth" ) {
+					if ( mapEnemies[i][1] != "blue_boss" ) {
 						myEnemies[i] = new char_enemy(mapEnemies[i][0], mapEnemies[i][1], mapEnemies[i][2], mapEnemies[i][3], mapEnemies[i][4], mapEnemies[i][5], mapEnemies[i][6], mapEnemies[i][7], mapEnemies[i][8], mapEnemies[i][9], myCharWidth, myCharHeight) ;
 					} else {
 						myEnemies[i] = new char_boss(mapEnemies[i][0], mapEnemies[i][1], mapEnemies[i][2], mapEnemies[i][3], mapEnemies[i][4], mapEnemies[i][5], mapEnemies[i][6], mapEnemies[i][7], mapEnemies[i][8], mapEnemies[i][9], myCharWidth, myCharHeight) ;
