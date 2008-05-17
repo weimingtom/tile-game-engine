@@ -43,6 +43,9 @@ package dk.sunewatts {
 				gl.v.myItems[2][0][3] = true;
 				// and rebuild item stack so it appears
 				gl.v.itemHolder.buildItemStack(2);
+				// rename grate room
+				gl.v.mapName[1] = "An open grate";
+				
 			}
 		}       
         	

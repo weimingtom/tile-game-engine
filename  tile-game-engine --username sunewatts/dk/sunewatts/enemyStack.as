@@ -26,7 +26,7 @@ package dk.sunewatts {
 					var myCharHeight:int = 16;
 					
 					if (mapEnemies[i][1] == "blue") { myCharWidth = 25; myCharHeight = 31; }
-					if (mapEnemies[i][1] == "blue_boss") { myCharWidth = 22; myCharHeight = 28; }
+					if (mapEnemies[i][1] == "blue_boss") { myCharWidth = 22; myCharHeight = 16; }
 					if (mapEnemies[i][1] == "ruth") { myCharWidth = 31; myCharHeight = 31; }
 					if (mapEnemies[i][1] == "pope") { myCharWidth = 11; myCharHeight = 16; }
 					if (mapEnemies[i][1] == "fat_blue") { myCharWidth = 11; myCharHeight = 19; }

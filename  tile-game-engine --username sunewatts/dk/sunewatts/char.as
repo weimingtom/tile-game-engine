@@ -122,7 +122,7 @@ package dk.sunewatts {
 		square.graphics.drawRect(-charWidth, -charHeight, charWidth * 2, charHeight * 2);
 		square.graphics.endFill();
 		square.alpha = .5;
-		addChild(square);
+		// addChild(square);
 
 
       }

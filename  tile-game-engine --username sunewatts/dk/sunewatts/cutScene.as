@@ -15,7 +15,7 @@ package dk.sunewatts {
 	    public var thisCutScene:MovieClip = new cutScenes(); // movie clip from .fla
 	    
 		public var textOut:Array = 	[
-									["Dette dæksel åbner først... Når du bringer mig Ruth Evensens trusser.<br><br>Spørg mig ikke hvorfor.", "Du må begive dig ind i FADERHUSET og bekæmpe Ruth", "Skyd hende med kanonen, det er den eneste måde..."]
+									["HELLO - I watch over the locked grate","To open it, I need the star which is kept by the<br>BLUE BOSS","Go through the door and kill him with the cannon<br>It's your only chance!"]
 									];
 
         public function cutScene()
