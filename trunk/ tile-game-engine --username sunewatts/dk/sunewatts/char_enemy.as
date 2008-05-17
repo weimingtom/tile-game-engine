@@ -37,7 +37,7 @@ package dk.sunewatts {
 					helperClass.getMyCorners (newX, newY, ob);
 					if ((!ob.upleft || !ob.upright || !ob.downleft || !ob.downright)) { doTurn = true; }
 					if (ob.onSlope) { doTurn = false; }
-					if (Math.random() > ob.jumpPct || ob.downleft != ob.downright) { ob.jump = true; ob.jumpspeed = ob.jumpstart; ob.onMovingTile = new Object();	}
+					if (Math.random() > ob.jumpPct || ob.downleft != ob.downright) { doTurn = false; ob.jump = true; ob.jumpspeed = ob.jumpstart; ob.onMovingTile = new Object();	}
 					// does not turn when accelerated by a push pad
 					if ((ob.pushMe > 0 && ob.xMove > 0) || (ob.pushMe < 0 && ob.xMove < 0)) { doTurn = false; }
 					// does not turn when on a moving tile

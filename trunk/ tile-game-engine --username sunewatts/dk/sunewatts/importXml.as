@@ -126,14 +126,14 @@ package dk.sunewatts {
 
 	            		case 99 :
 	            		// horizontal platform
-	            		thisMovingTile = new Array( 2, x, y, 2, 1, 0, 16, 16 );	            			
+	            		thisMovingTile = new Array( 2, x, y, 2, 1, 0, 16, 8 );	            			
 	            		gl.v.myMovingTiles[0].push(thisMovingTile);
 	            		movingTileOut += " [ " + thisMovingTile + " ]";
 			    		break;
 			    		
 	            		case 100:
 	            		// vertical platform
-	            		thisMovingTile = new Array( 2, x, y, 4, 0, 1, 16, 16 );	            			
+	            		thisMovingTile = new Array( 2, x, y, 4, 0, 1, 16, 8 );	            			
 	            		movingTileOut += " [ " + thisMovingTile + " ],";
 	            		gl.v.myMovingTiles[0].push(thisMovingTile);
 			    		break;				    					    
