@@ -138,7 +138,7 @@ package dk.sunewatts {
 		
 		var oldPush:int = ob.pushMe;
 		
-		 // reduce momentum
+		// reduce momentum
 		if (ob.pushMe > 0 ) { ob.pushMe--; }
 		if (ob.pushMe < 0 ) { ob.pushMe++; }
 		
@@ -171,7 +171,7 @@ package dk.sunewatts {
 				ob.ychar += ySpeed * diry;
 				} else {
 				ob.ychar = ob.ytile * gl.tileH + ob.charHeight; ob.jumpspeed = 0; // hit tile above - placed right up to tile
-						
+		
 				// hit a special type tile above?
 				var specialBlockTest:Object = helperClass.returnTileObject( ob.xtile, ob.ytile -1 );
 				if (specialBlockTest.special == "jumpBlock") { specialBlockTest.myTile.gotoAndPlay("jumpBlock01"); }
