@@ -21,7 +21,7 @@ package dk.sunewatts {
         	// draw a black background:
 			var square:Sprite = new Sprite();
 			square.graphics.beginFill(0x00);
-			//square.graphics.drawRect(-(5* gl.canvasW), -5, gl.canvasW * 10, 500);
+			square.graphics.drawRect(-(5* 500), -5, 500 * 10, 500);
 			square.graphics.endFill();
 			square.alpha = .5;
 			addChild(square);
