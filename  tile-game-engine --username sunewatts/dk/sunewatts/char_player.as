@@ -10,15 +10,15 @@ package dk.sunewatts {
 		// functionality specific to the player: ladders, moving platforms
 		//
 		
-		public function checkItems( ob ) {
+		public function checkItems( ob ):Boolean {
 		// tile and items logic, only for hero...
 			
 		// hit a killer tile?
-		var killer:Object = helperClass.returnTileObject( ob.xtile, ob.ytile); if (killer.special == "killer" && ob.status != "invincible") { loseLife(ob); return(true); }
+		var killer:Object = helperClass.returnTileObject( ob.xtile, ob.ytile ); if (killer.special == "killer" && ob.status != "invincible") { loseLife(ob); return(true); }
 	
 		// save position in case of player death
 		var tileBelow:Object = helperClass.returnTileObject( ob.xtile, ob.ytile + 1);
-		if (!tileBelow.walkable || tileBelow.special == "cloud") { gl.v.lastGoodX = ob.xtile; gl.v.lastGoodY = ob.ytile; }
+		if ((tileBelow.walkable == false || tileBelow.special == "cloud") && ob.status == "") { gl.v.lastGoodX = ob.xtile; gl.v.lastGoodY = ob.ytile; }
 		
 		// collected an item?
 		var obItem:Object = new Object();
@@ -30,9 +30,9 @@ package dk.sunewatts {
 				gl.v.points += 100;
 				helperClass.addEffect( "points100", ob.xchar, ob.ychar, 30);
 				// Sound
-				//mySoundHandler.playSound();
-							
-				//tt.showText(globals.mapName[thisMap], points.toString(), lives.toString() );
+				gl.v.mySoundHandler.playSound(1);
+				// Refresh display						
+				gl.v.tt.refreshDisplay();
 							
 				// met king?
 				if (obItem.frame == 5) { gl.v.myCutScene.showCutScene(0); }
@@ -40,6 +40,7 @@ package dk.sunewatts {
 				if (obItem.frame == 6) { trace ("done"); gl.v.myCurrentMap[1][8][15] = 1; }			
 				}
 			}
+			return (true);
 		}
 		
 		public function checkUpLadder( ob ) {
@@ -92,9 +93,19 @@ package dk.sunewatts {
 			ob.status = "dead";
 			ob.counter = 40;
 			ob.thisChar.gotoAndPlay("dead");
-			//tt.showText(globals.mapName[thisMap], points.toString(), lives.toString() );
-			ob.xtile = gl.v.lastGoodX;
-			ob.ytile = gl.v.lastGoodY;
+			gl.v.tt.refreshDisplay();
+			gl.v.mySoundHandler.playSound(5);
+			
+			// reset player, return to last good position
+			ob.jumpspeed = 0;
+			ob.addy = 0;
+			
+			if (!ob.onMovingTile.name) {
+				ob.xtile = gl.v.lastGoodX;
+				ob.ytile = gl.v.lastGoodY;
+				ob.xchar = ob.xtile * gl.tileW;
+				ob.ychar = ob.ytile * gl.tileH;
+			}
 		}		
 
 

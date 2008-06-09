@@ -296,6 +296,7 @@ myRoom[4] = [
 		// **************************************************
 
 		public static var v:Object = []; // object which holds writable global values
+		
 		v.stageHolder = new MovieClip();
 		v.gamePaused = false;
 		v.lives = 99;
@@ -320,6 +321,7 @@ myRoom[4] = [
 		v.myCutScene = new cutScene();
 		v.myBackgroundHolder = new background(2);
 		v.tt = new textOut();
+		v.mySoundHandler = new soundHandler();
 		
 
     }

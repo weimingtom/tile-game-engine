@@ -145,7 +145,7 @@ package dk.sunewatts {
 		
 		// jump- & push-pad logic
 		var tileBelow:Object = helperClass.returnTileObject( ob.xtile, ob.ytile + 1);
-		if (ob.jump == true && jumpNow > 0 && tileBelow.special == "spring") { ob.jump = true; ob.jumpspeed = -24; tileBelow.myTile.gotoAndPlay("spring01"); return(true); }
+		if (ob.jump == true && jumpNow > 0 && tileBelow.special == "spring") { ob.jump = true; ob.jumpspeed = -24; tileBelow.myTile.gotoAndPlay("spring01"); gl.v.mySoundHandler.playSound(6); return(true); }
 		if (tileBelow.specialInfo == "pushLeft" && ob.jumpspeed >= 0) { ob.pushMe = -12; }
 		if (tileBelow.specialInfo == "pushRight" && ob.jumpspeed >= 0) { ob.pushMe = 12; }
 		
@@ -175,7 +175,7 @@ package dk.sunewatts {
 				// hit a special type tile above?
 				var specialBlockTest:Object = helperClass.returnTileObject( ob.xtile, ob.ytile -1 );
 				if (specialBlockTest.special == "jumpBlock") { specialBlockTest.myTile.gotoAndPlay("jumpBlock01"); }
-				if (specialBlockTest.special == "cannon") { specialBlockTest.myTile.gotoAndPlay("cannon01"); helperClass.addBullet(3, (ob.xtile + .5) * gl.tileW, (ob.ytile-2)*gl.tileH, 0, -1, 10, 30); }
+				if (specialBlockTest.special == "cannon") { specialBlockTest.myTile.gotoAndPlay("cannon01"); helperClass.addBullet(3, (ob.xtile + .5) * gl.tileW, (ob.ytile-2)*gl.tileH, 0, -1, 10, 30); gl.v.mySoundHandler.playSound(7); }
 				if (specialBlockTest.special == "destructible") {
 					specialBlockTest.myTile.gotoAndPlay("destructible01");
 					specialBlockTest.special = "";
@@ -249,7 +249,7 @@ package dk.sunewatts {
 		dirx < 0 ? showFrame = "left" : showFrame = "right";
 		
 		if (ob.name == "hero") {
-			// player specific
+			// player specific animation frames
 			if (ob.jump && diry < 0) { dirx < 0 ? showFrame = "upLeft" : showFrame = "upRight"; }
 			if (ob.jump && diry > 0) { dirx < 0 ? showFrame = "downLeft" : showFrame = "downRight"; }
 			if (ob.climb) { showFrame = "climb"; }
@@ -328,7 +328,7 @@ package dk.sunewatts {
 
 
 	function checkForSlopes (ob:Object, diry:int, dirx:int):void {
-		var direction:String;
+
 		// is tile below us a slope?
 		var checkSlopeUnder:Object = helperClass.returnTileObject(ob.xtile, ob.ytile+1);
 		if ( checkSlopeUnder.special == "slope" && !ob.jump ) {

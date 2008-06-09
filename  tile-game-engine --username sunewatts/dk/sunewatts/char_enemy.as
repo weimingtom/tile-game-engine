@@ -32,12 +32,22 @@ package dk.sunewatts {
 					case "walker" :
 					// left-right walker - walks on ground, platforms and slopes
 					var groundTest:Object = helperClass.returnTileObject(Math.floor(newX / gl.tileW), ob.ytile+1 );
+					
+					// test for one lower corner on solid tile, the other in free air - will force jump to avoid flaky behaviour
+					var groundTestLeftFoot:Object = helperClass.returnTileObject(Math.floor((newX - ob.charWidth) / gl.tileW), ob.ytile+1 );
+					var groundTestRightFoot:Object = helperClass.returnTileObject(Math.floor((newX + ob.charWidth) / gl.tileW), ob.ytile+1 );
+					var leftWalkable:Boolean = false;
+					var rightWalkable:Boolean = false;
+					
+					if (!groundTestLeftFoot.walkable || groundTestLeftFoot.special == "cloud" || groundTestLeftFoot.special == "slope") { leftWalkable = true }
+					if (!groundTestRightFoot.walkable || groundTestRightFoot.special == "cloud" || groundTestRightFoot.special == "slope") { rightWalkable = true }
+					
 					if (!groundTest.walkable || groundTest.special == "cloud" || groundTest.special == "slope") { doTurn = false; }
 					// check for barrier in direction of travel
 					helperClass.getMyCorners (newX, newY, ob);
 					if ((!ob.upleft || !ob.upright || !ob.downleft || !ob.downright)) { doTurn = true; }
 					if (ob.onSlope) { doTurn = false; }
-					if (Math.random() > ob.jumpPct || ob.downleft != ob.downright) { ob.jump = true; ob.jumpspeed = ob.jumpstart; ob.onMovingTile = new Object();	}
+					if (Math.random() > ob.jumpPct || leftWalkable != rightWalkable) { ob.jump = true; ob.jumpspeed = ob.jumpstart; ob.onMovingTile = new Object(); }
 					// does not turn when accelerated by a push pad
 					if ((ob.pushMe > 0 && ob.xMove > 0) || (ob.pushMe < 0 && ob.xMove < 0)) { doTurn = false; }
 					// does not turn when on a moving tile
@@ -86,6 +96,7 @@ package dk.sunewatts {
 			gl.v.points += 100;
 			gl.v.tt.showText(gl.v.mapName[gl.v.thisMap], gl.v.points.toString(), gl.v.lives.toString() );
 			helperClass.addEffect( "impact01", ob.xchar, ob.ychar, 30 );
+			gl.v.mySoundHandler.playSound(3);
 			if (--ob.life == 0) {
 				ob.dead = true;
 				gl.v.myEnemies[gl.v.thisMap][i][0] = true;

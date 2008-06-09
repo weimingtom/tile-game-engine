@@ -30,8 +30,12 @@ package dk.sunewatts {
 			gl.v.tt.showText(gl.v.mapName[gl.v.thisMap], gl.v.points.toString(), gl.v.lives.toString() );
 			helperClass.addEffect( "cloud01", ob.xchar, ob.ychar, 30 );
 			helperClass.addEffect( "points100", ob.xchar, ob.ychar - 10, 30 );
+			gl.v.mySoundHandler.playSound(3);
+
 			
 			if (--ob.life == 0) {
+				gl.v.mySoundHandler.playSound(4);
+				
 				// OK, we killed the boss
 				ob.dead = true;
 				gl.v.myEnemies[gl.v.thisMap][i][0] = true;
