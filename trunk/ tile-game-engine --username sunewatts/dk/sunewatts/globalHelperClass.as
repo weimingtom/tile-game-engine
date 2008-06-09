@@ -74,12 +74,20 @@ package dk.sunewatts {
 										
 					gl.v.myMap.cacheAsBitmap = true;
 					
-					gl.v.tt.showText(gl.v.mapName[gl.v.thisMap], gl.v.points.toString(), gl.v.lives.toString() );
+					gl.v.tt.refreshDisplay();
 					
 					gl.v.enemyHolder.buildStack(gl.v.thisMap);
 					gl.v.itemHolder.buildItemStack(gl.v.thisMap);
 					gl.v.movingTileHolder.buildMovingTileStack(gl.v.thisMap);
 					
+					// kill any bullets and effects from old screen
+					for (var ii:int = 0; ii < gl.v.myBulletStack.length; ii++ )  {
+						gl.v.myBulletStack[ii].counter = 1;
+					}
+					for (var nn:int = 0; nn < gl.v.myEffectStack.length; nn++ )  {
+						gl.v.myEffectStack[nn].counter = 1;
+					}
+											
 					gl.v.myBackgroundHolder.buildBackground(gl.v.thisMap % 3 + 2);
 					
 					gl.v.stageHolder.x = 0;
@@ -96,9 +104,11 @@ package dk.sunewatts {
 			return (isIntersecting);
 		}
 		
-		public function scrollStage(ob:Object, forceRefresh:Boolean = false):void {
+		public function scrollStage(ob:Object, forceRefresh:Boolean = false):Boolean {
+			if (ob.counter > 0 && ob.status == "dead") { return(false); }
+			var trueY:int = ob.ychar - ob.addy; // respects the modifier when on a slope
 			if (ob.xchar > gl.canvasW / 2 && ob.xchar < (gl.v.myMap.mapWidth * gl.tileW - (gl.canvasW / 2))) { 	gl.v.stageHolder.x = - ob.xchar + gl.canvasW/2; }
-			if (ob.ychar > gl.canvasH / 2 && ob.ychar < (gl.v.myMap.mapHeight * gl.tileH - (gl.canvasH / 2))) { gl.v.stageHolder.y =  - ob.ychar + gl.canvasH/2; }
+			if (trueY > gl.canvasH / 2 && trueY < (gl.v.myMap.mapHeight * gl.tileH - (gl.canvasH / 2))) { gl.v.stageHolder.y =  - trueY + gl.canvasH/2; }
 			
 			if (forceRefresh) {
 				var thisX:int = - ob.xchar + gl.canvasW/2;
@@ -110,12 +120,14 @@ package dk.sunewatts {
 				if (ob.ychar < gl.canvasH / 2) { thisY = 0; }
 				// refresh
 				gl.v.stageHolder.x = thisX;
-				gl.v.stageHolder.y = thisY;				
+				gl.v.stageHolder.y = thisY;		
 			}
 			
 			// scroll background
 			gl.v.myBackgroundHolder.x = (gl.v.stageHolder.x % gl.v.myBackgroundHolder.width) / 2; // nice tiling code - scrolls at 50% fg rate	
+			return (true);
 		}
 	
 	}
+
 }

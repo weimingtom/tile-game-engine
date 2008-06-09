@@ -80,5 +80,9 @@ package dk.sunewatts {
             myTextBox03.setTextFormat(format3);
 
 		}
+		
+		public function refreshDisplay():void {
+			showText(gl.v.mapName[gl.v.thisMap], gl.v.points.toString(), gl.v.lives.toString());
+		}
     }
 }
